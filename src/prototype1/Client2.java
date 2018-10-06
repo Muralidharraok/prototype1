@@ -5,6 +5,13 @@
  */
 package prototype1;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+//import static prototype1.Prototype1.con;
+
 /**
  *
  * @author MURALI
@@ -14,8 +21,26 @@ public class Client2 extends javax.swing.JPanel {
     /**
      * Creates new form Client2
      */
-    public Client2() {
+    static Connection con;
+    static Statement stm;
+    static ResultSet rs;
+    public Client2() throws SQLException {
         initComponents();
+        try
+         {
+             Class.forName("com.mysql.jdbc.Driver");
+             con=DriverManager.getConnection("jdbc:mysql://localhost/agency","root","rao");
+             stm=con.createStatement();
+         }
+         catch(ClassNotFoundException e)
+          {
+              System.out.println("Unable to load the driver");
+          }
+         catch(SQLException e)
+         {
+             System.out.println("Connection not established"+e);
+         }
+         
     }
 
     /**
@@ -116,9 +141,22 @@ public class Client2 extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         jLabel5.setText("SUCCESSFULLY UPDATED IN DATABASE");        // TODO add your handling code here:
+         jLabel5.setText("SUCCESSFULLY UPDATED IN DATABASE");     
+        try{ create_client_table();
+        }catch (Exception e){
+            
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    void create_client_table() throws SQLException
+    {
+        String s="create table client(id integer not null primary key,name char(20) not null,phone integer not null,age int not null,address varchar(50) not null)";
+        stm.executeUpdate(s);
+        
+    }
+    void insert_client()
+    {
+        //String s="insert into client values("+jTextField1+""
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

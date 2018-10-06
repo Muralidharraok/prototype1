@@ -1,7 +1,6 @@
 package prototype1;
 import javax.swing.*;
 import java.awt.*;
-//import java.awt.event.ActionListener;
 import java.awt.event.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -16,8 +15,6 @@ import java.sql.*;
 public class Prototype1{
     JFrame jf;
     JTabbedPane jt; 
-    static Connection con;
-    static Statement stm;
     static ResultSet rs;
      public Prototype1() throws SQLException
     {
@@ -32,20 +29,7 @@ public class Prototype1{
          jt.addTab("DEAL",new Deal());
          jt.addTab("CLIENT",new Client2());
          jf.add(jt);
-         try
-         {
-             Class.forName("com.mysql.jdbc.Driver");
-             con=DriverManager.getConnection("jdbc:musql://localhost/agency","root","");
-         }
-         catch(ClassNotFoundException e)
-          {
-              System.out.println("Unable to load the driver");
-          }
-         catch(SQLException e)
-         {
-             System.out.println("Connection not established");
-         }
-         stm=con.createStatement();
+        
     }
     public static void main(String[] args) throws SQLException{
         Prototype1 p=new Prototype1();
