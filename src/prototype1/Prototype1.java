@@ -15,7 +15,7 @@ import java.sql.*;
 public class Prototype1{
     JFrame jf;
     JTabbedPane jt; 
-    static ResultSet rs;
+    
      public Prototype1() throws SQLException
     {
         
@@ -31,6 +31,7 @@ public class Prototype1{
          jf.add(jt);
         
     }
+     
     public static void main(String[] args) throws SQLException{
         Prototype1 p=new Prototype1();
     }   

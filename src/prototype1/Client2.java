@@ -5,11 +5,7 @@
  */
 package prototype1;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 //import static prototype1.Prototype1.con;
 
 /**
@@ -23,25 +19,10 @@ public class Client2 extends javax.swing.JPanel {
      */
     static Connection con;
     static Statement stm;
-    static ResultSet rs;
-    public Client2() throws SQLException {
+  //  static ResultSet rs;
+    public Client2() throws SQLException{
         initComponents();
-        try
-         {
-             Class.forName("com.mysql.jdbc.Driver");
-             con=DriverManager.getConnection("jdbc:mysql://localhost/agency","root","rao");
-             stm=con.createStatement();
-         }
-         catch(ClassNotFoundException e)
-          {
-              System.out.println("Unable to load the driver");
-          }
-         catch(SQLException e)
-         {
-             System.out.println("Connection not established"+e);
-         }
-         
-    }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,6 +43,9 @@ public class Client2 extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("NAME:");
 
@@ -71,7 +55,7 @@ public class Client2 extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("DOB:");
+        jLabel2.setText("AGE:");
 
         jLabel3.setText("ADDRESS:");
 
@@ -86,28 +70,48 @@ public class Client2 extends javax.swing.JPanel {
 
         jLabel5.setText("         FILL ALL DETAILS COMPLETELY");
 
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("ID:");
+
+        jButton2.setText("CLEAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                             .addComponent(jTextField2)
                             .addComponent(jTextField3)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
-                .addContainerGap(128, Short.MAX_VALUE))
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField5)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +132,15 @@ public class Client2 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addContainerGap())
         );
@@ -141,33 +151,84 @@ public class Client2 extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         jLabel5.setText("SUCCESSFULLY UPDATED IN DATABASE");     
-        try{ create_client_table();
+         
+        try{ 
+            insert_client();
+            jLabel5.setText("SUCCESSFULLY UPDATED IN DATABASE"); 
+            //create_client_table();
         }catch (Exception e){
+            System.out.println(""+e);
+            jLabel5.setText("WAS NOT ABLE TO INSERT..!! TRY AGIAN"); 
             
         }// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    void create_client_table() throws SQLException
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    void insert_client() throws SQLException
     {
-        String s="create table client(id integer not null primary key,name char(20) not null,phone integer not null,age int not null,address varchar(50) not null)";
+        try
+         {
+             Class.forName("com.mysql.jdbc.Driver");
+             con=DriverManager.getConnection("jdbc:mysql://localhost/agency","root","rao");
+             stm=con.createStatement();
+         }
+         catch(ClassNotFoundException e)
+          {
+              System.out.println("Unable to load the driver");
+              jLabel5.setText("Unable to load the driver"); 
+          }
+         catch(SQLException e)
+         {
+             System.out.println("Connection not established"+e);
+             jLabel5.setText("Connection not established"); 
+         }
+        if(jTextField1.getText().trim().length() == 0)
+        {jLabel5.setText("NAME IS MUST"); }
+        if(jTextField2.getText().trim().length() == 0)
+        { jLabel5.setText("AGE IS MUST"); }
+        if(jTextField3.getText().trim().length() == 0)
+        { jLabel5.setText("ADDRESS IS MUST"); }
+        if(jTextField4.getText().trim().length() == 0)
+        {  jLabel5.setText("PHONE IS MUST"); }
+        if(jTextField5.getText().trim().length() == 0)
+        {    jLabel5.setText("ID IS MUST"); }
+        String n=jTextField1.getText();
+        int a=Integer.parseInt(jTextField2.getText());
+        String ad=jTextField3.getText();
+        String p=jTextField4.getText();
+        int id=Integer.parseInt(jTextField5.getText());
+        String s="insert into client values("+id+",'"+n+"',"+p+","+a+",'"+ad+"')";
         stm.executeUpdate(s);
-        
-    }
-    void insert_client()
-    {
-        //String s="insert into client values("+jTextField1+""
+        //rs.close();
+        stm.close();
+        con.close();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
