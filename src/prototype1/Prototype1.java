@@ -20,7 +20,7 @@ public class Prototype1{
     {
         
          jf=new JFrame("Demo!");
-         jf.setSize(300,300);
+         jf.setSize(600,600);
          jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          jf.setVisible(true);
          jf.setLayout(new BorderLayout());
@@ -34,6 +34,7 @@ public class Prototype1{
      
     public static void main(String[] args) throws SQLException{
         Prototype1 p=new Prototype1();
+        
     }   
 }
 

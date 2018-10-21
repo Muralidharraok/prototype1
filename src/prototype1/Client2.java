@@ -6,6 +6,7 @@
 package prototype1;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 //import static prototype1.Prototype1.con;
 
 /**
@@ -46,6 +47,8 @@ public class Client2 extends javax.swing.JPanel {
         jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
 
         jLabel1.setText("NAME:");
 
@@ -60,6 +63,12 @@ public class Client2 extends javax.swing.JPanel {
         jLabel3.setText("ADDRESS:");
 
         jLabel4.setText("PHONE");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("SUBMIT");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +94,8 @@ public class Client2 extends javax.swing.JPanel {
             }
         });
 
+        jLabel7.setText("BALANCE:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,23 +111,26 @@ public class Client2 extends javax.swing.JPanel {
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                            .addComponent(jLabel7))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                             .addComponent(jTextField2)
                             .addComponent(jTextField3)
                             .addComponent(jTextField4)
-                            .addComponent(jTextField5)))))
+                            .addComponent(jTextField5)
+                            .addComponent(jTextField6)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,10 +147,14 @@ public class Client2 extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -174,7 +192,12 @@ public class Client2 extends javax.swing.JPanel {
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
+        jTextField6.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
     
     void insert_client() throws SQLException
     {
@@ -194,7 +217,7 @@ public class Client2 extends javax.swing.JPanel {
              System.out.println("Connection not established"+e);
              jLabel5.setText("Connection not established"); 
          }
-        if(jTextField1.getText().trim().length() == 0)
+      /*  if(jTextField1.getText().trim().length() == 0)
         {jLabel5.setText("NAME IS MUST"); }
         if(jTextField2.getText().trim().length() == 0)
         { jLabel5.setText("AGE IS MUST"); }
@@ -203,7 +226,14 @@ public class Client2 extends javax.swing.JPanel {
         if(jTextField4.getText().trim().length() == 0)
         {  jLabel5.setText("PHONE IS MUST"); }
         if(jTextField5.getText().trim().length() == 0)
-        {    jLabel5.setText("ID IS MUST"); }
+        {    jLabel5.setText("ID IS MUST"); }*/
+      if(jTextField1.getText().trim().length() == 0 || jTextField2.getText().trim().length() == 0 || jTextField3.getText().trim().length() == 0 || jTextField4.getText().trim().length() == 0 || jTextField5.getText().trim().length() == 0)
+      {
+           JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED");
+           
+      }
+      else
+      {
         String n=jTextField1.getText();
         int a=Integer.parseInt(jTextField2.getText());
         String ad=jTextField3.getText();
@@ -211,9 +241,23 @@ public class Client2 extends javax.swing.JPanel {
         int id=Integer.parseInt(jTextField5.getText());
         String s="insert into client values("+id+",'"+n+"',"+p+","+a+",'"+ad+"')";
         stm.executeUpdate(s);
+        int b=Integer.parseInt(jTextField6.getText());
+        String s1="insert into balance_details values("+id+","+b+")";
+        stm.executeUpdate(s1);
+        String s2="insert into stock_details values("+id+",101,0)";
+        stm.executeUpdate(s2);
+        String s3="insert into stock_details values("+id+",102,0)";
+        stm.executeUpdate(s3);
+        String s4="insert into stock_details values("+id+",103,0)";
+        stm.executeUpdate(s4);
+        String s5="insert into stock_details values("+id+",104,0)";
+        stm.executeUpdate(s5);
+        String s6="insert into stock_details values("+id+",105,0)";
+        stm.executeUpdate(s6);
         //rs.close();
         stm.close();
         con.close();
+      }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -225,10 +269,12 @@ public class Client2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
