@@ -99,6 +99,8 @@ public class Deal extends javax.swing.JPanel {
         jTabbedPane1.setBorder(new javax.swing.border.MatteBorder(null));
         jTabbedPane1.setName(""); // NOI18N
 
+        jPanel1.setBackground(new java.awt.Color(98, 138, 238));
+
         jLabel1.setText("NO. OF STOCKS:");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +214,8 @@ public class Deal extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("BUY", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(98, 133, 238));
+
         jLabel3.setText("COMPANY :");
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -276,7 +280,7 @@ public class Deal extends javax.swing.JPanel {
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addComponent(jScrollPane3))
                 .addContainerGap())
         );
@@ -304,7 +308,7 @@ public class Deal extends javax.swing.JPanel {
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(jButton3)
-                        .addContainerGap(65, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
