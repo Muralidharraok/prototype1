@@ -1,13 +1,14 @@
 package prototype1;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+//import java.awt.event.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-import java.util.*;
-import prototype1.Client2;
-import prototype1.Deal;
+//import java.util.*;
+//import prototype1.Client2;
+//import prototype1.Deal;
+//import prototype1.Info1;
 import java.sql.*;
 
 
@@ -28,6 +29,7 @@ public class Prototype1{
          jf.add(new TitlePane(), BorderLayout.NORTH);
          jt.addTab("DEAL",new Deal());
          jt.addTab("CLIENT",new Client2());
+         jt.addTab("INFO",new Info1());
          jf.add(jt);
         
     }
