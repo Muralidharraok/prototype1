@@ -54,12 +54,12 @@
                       <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="268" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" pref="327" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jLabel13" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -133,6 +133,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="SHOW"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>

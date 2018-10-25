@@ -1,11 +1,15 @@
 
 
 package prototype1;
-
+import java.awt.Font;
+import java.sql.*;
 public class Info1 extends javax.swing.JPanel {
-
-    public Info1() {
+    static Connection con;
+    static Statement stm;
+    static ResultSet rs;
+    public Info1() throws SQLException{
         initComponents();
+       
     }
 
     @SuppressWarnings("unchecked")
@@ -39,6 +43,11 @@ public class Info1 extends javax.swing.JPanel {
         jLabel1.setText("ENTER ID:");
 
         jButton1.setText("SHOW");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Symbol", 1, 11)); // NOI18N
         jLabel2.setText("DETAILS:");
@@ -107,9 +116,9 @@ public class Info1 extends javax.swing.JPanel {
                         .addGap(159, 159, 159)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)))
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,6 +164,91 @@ public class Info1 extends javax.swing.JPanel {
                 .addContainerGap(74, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try
+         {
+             Class.forName("com.mysql.jdbc.Driver");
+             con=DriverManager.getConnection("jdbc:mysql://localhost/agency","root","rao");
+             stm=con.createStatement();
+         }
+         catch(ClassNotFoundException e)
+          {
+              System.out.println("Unable to load the driver"); 
+          }
+         catch(SQLException e)
+         {
+             System.out.println("Connection not established"+e); 
+         }
+        
+        try
+        {
+        System.out.print("hhi");
+        int id;
+        id = Integer.parseInt(jTextField1.getText());
+        String s="select * from client where id="+id+"";
+        rs=stm.executeQuery(s);
+        String n,ph,add,age;
+        String ide=id+"";
+        rs.next();
+        n=rs.getString(2);
+        ph=rs.getString(3);
+        add=rs.getString(5);
+        age=rs.getInt(4)+"";
+        jLabel8.setText(n);
+        jLabel9.setText(age);
+        jLabel10.setText(ide);
+        jLabel11.setText(ph);
+        jLabel12.setText(add);
+        
+        
+        String s1="Select * from stock_details where id="+id+" order by id,comp_id";
+        rs=stm.executeQuery(s1);
+        String e[]=new String[25],ex;
+        int i=0;
+        while(rs.next())
+        {
+            ex=" "+rs.getInt(2)+"                                   "+rs.getString(3)+"\n";
+            e[i]=ex;
+            i++;
+        }
+          jTextArea1.setFont(new Font("Serif", Font.BOLD, 15));
+          jTextArea1.setText(" Company ID                    No. of Stocks\n");
+      
+        for(int j=0;j<i;j++)
+        {
+            jTextArea1.append(e[j]);
+        }
+        
+        String s2="Select * from transaction as t where t.id="+id+";";
+        rs=stm.executeQuery(s2);
+        String d[]=new String[25],dx;
+        int j=0;
+        while(rs.next())
+        {
+            dx=" "+rs.getInt(2)+"                                  "+rs.getString(3)+"                          "+rs.getInt(4)+"                              "+rs.getDouble(5)+"\n";
+            d[i]=dx;
+            i++;
+        }
+          jTextArea2.setFont(new Font("Serif", Font.BOLD, 15));
+          jTextArea2.setText(" Company ID                 Buy/Sell              No. of stocks            Profit\n");
+      
+        for(int k=0;k<i;k++)
+        {
+            jTextArea2.append(d[k]);
+        }
+        
+        rs.close();
+        stm.close();
+        con.close();
+        
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

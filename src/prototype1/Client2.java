@@ -313,6 +313,10 @@ public class Client2 extends javax.swing.JPanel {
              JOptionPane.showMessageDialog(null, "ARE YOU SURE?");
              String s="delete from client where id="+id+"";
              stm.executeUpdate(s);
+              String s2="delete from balance_details where bank_id="+id+"";
+             stm.executeUpdate(s2);
+              String s3="delete from stock_details where id="+id+"";
+             stm.executeUpdate(s3);
              String s1="update transaction set id=999 where id="+id+";";
              stm.executeUpdate(s1);
          }
